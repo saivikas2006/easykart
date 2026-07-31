@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/categories",
+  baseURL: "https://easykart-slu7.onrender.com/api/categories",
 });
 
 export const getCategories = async () => {

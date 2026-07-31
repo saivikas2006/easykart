@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/analytics",
+  baseURL: "https://easykart-slu7.onrender.com/api/analytics",
 });
 
 export const getAnalytics = async () => {

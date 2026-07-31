@@ -69,7 +69,7 @@ const handlePlaceOrder = async () => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/checkout",
+      "https://easykart-slu7.onrender.com/api/checkout",
       orderData
     );
 

@@ -180,7 +180,7 @@ const decreaseQuantity = async (cartId) => {
     } else {
 
       await fetch(
-        `http://localhost:5000/api/cart/${cartId}`,
+        `https://easykart-slu7.onrender.com/api/cart/${cartId}`,
         {
           method: "PUT",
           headers: {

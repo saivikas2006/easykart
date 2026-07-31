@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/settings",
+  baseURL: "https://easykart-slu7.onrender.com/api/settings",
 });
 
 export const getSettings = async () => {
