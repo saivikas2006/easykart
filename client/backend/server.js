@@ -29,11 +29,32 @@ connectDB();
 // =====================================
 // Middlewares
 // =====================================
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://easykart.vercel.app",
+];
+
+if (process.env.CLIENT_URL) {
+  allowedOrigins.push(
+    ...process.env.CLIENT_URL
+      .split(",")
+      .map((url) => url.trim())
+      .filter(Boolean)
+  );
+}
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL?.split(",") || [
-      "http://localhost:5173",
-    ],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (Postman, curl, server-to-server)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
   })
 );
