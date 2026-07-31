@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
 import { useWishlist } from "../../../context/WishlistContext";
-const ProductCard = ({ product, view }) => {
+const ProductCard = ({ product, view, isSearch = false }) => {
 const { addToCart } = useCart();
 
 const {
@@ -162,13 +162,23 @@ const {
                   <Eye size={20} />
                 </button>
 
-                <button
-  onClick={() => addToCart(product)}
-  className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
->
-  <ShoppingCart size={18} />
-  Add to Cart
-</button>
+    {isSearch ? (
+  <Link
+    to={`/product/${product.slug}`}
+    className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+  >
+    <Eye size={18} />
+    View Details
+  </Link>
+) : (
+  <button
+    onClick={() => addToCart(product)}
+    className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+  >
+    <ShoppingCart size={18} />
+    Add to Cart
+  </button>
+)}
 
               </div>
 
@@ -316,18 +326,28 @@ const {
           </span>
 
         </div>
-
-        <button
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addToCart(product);
-  }}
-  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
->
-  <ShoppingCart size={18} />
-  Add to Cart
-</button>
+{isSearch ? (
+  <Link
+    to={`/product/${product.slug}`}
+    onClick={(e) => e.stopPropagation()}
+    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
+  >
+    <Eye size={18} />
+    View Details
+  </Link>
+) : (
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addToCart(product);
+    }}
+    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
+  >
+    <ShoppingCart size={18} />
+    Add to Cart
+  </button>
+)}
 
       </div>
 
