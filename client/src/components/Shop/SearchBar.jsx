@@ -6,7 +6,7 @@ import {
   FiCamera,
 } from "react-icons/fi";
 
-import SearchSuggestions from "../search/SearchSuggestions";
+import SearchSuggestions from "../Search/SearchSuggestions";
 
 const SearchBar = ({
   query,
