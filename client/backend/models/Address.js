@@ -18,15 +18,14 @@ const addressSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
     houseNo: {
       type: String,
-      required: true,
+      default: "",
     },
 
     area: {
       type: String,
-      required: true,
+      default: "",
     },
 
     landmark: {

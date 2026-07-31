@@ -52,22 +52,34 @@ const CheckoutForm = () => {
   };
 
   const handleSave = async () => {
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.address ||
-      !formData.city ||
-      !formData.state ||
-      !formData.pincode
-    ) {
+   if (
+  !formData.name ||
+  !formData.phone ||
+  !formData.address ||
+  !formData.city ||
+  !formData.state ||
+  !formData.pincode
+) {
       toast.error("Please fill all required fields");
       return;
     }
 
     try {
-      await addAddress(formData);
+      const addressData = {
+  fullName: formData.name,
+  mobile: formData.phone,
+  houseNo: "",
+  area: formData.address,
+  landmark: "",
+  city: formData.city,
+  state: formData.state,
+  pincode: formData.pincode,
+  addressType: "Home",
+};
 
-      setShippingAddress(formData);
+const savedAddress = await addAddress(addressData);
+
+setShippingAddress(savedAddress);
 
       toast.success("Address Saved Successfully");
 
